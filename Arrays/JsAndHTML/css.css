@@ -1,0 +1,27 @@
+.main{
+    width: 500px;
+    display: flex;
+}
+
+.row{
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+}
+
+.element{
+    display: inline;
+}
+
+#changed-array{
+    margin-left: 30px;
+}
+.create-array-button{
+    border-radius: 15px;
+    background-color: #3498db;
+    color: azure;
+    border: 0;
+    padding: 20px;
+    margin: 20px;
+    font-size: large;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <input id="height" placeholder="height" maxlength="2" type="number">
+    <input id="width" placeholder="width" maxlength="2" type="number">
+    <input id="hStart" placeholder="hStart" maxlength="2" type="number">
+    <input id="wStart" placeholder="wStart" maxlength="2" type="number">
+    <select id="direction">
+        <option>up</option>
+        <option>right</option>
+        <option>down</option>
+        <option>left</option>
+    </select>
+    <label for="clockwise">Use clockwise direction?</label>
+    <select id="clockwise">
+        <option>true</option>
+        <option>false</option>
+    </select>
+    <button class="create-array-button" onclick="createArray()">Generate array</button>
+    <div id="main">
+
+    </div>
+    <p id="changed-array"></p>
+    <script src="arrays.js"></script>
+</body>
+</html>
