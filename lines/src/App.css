@@ -1,0 +1,44 @@
+.app{
+  display: flex;
+  justify-content: center;
+}
+table, td{
+  border: 1px solid black;
+}
+
+td{
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.block{
+  background-color: rgb(199, 83, 0);
+}
+.road{
+  background-color: rgb(253, 248, 228);
+}
+
+.way{
+  background-color: rgb(12, 150, 12);
+}
+
+select{
+  width: 30%;
+  height: 30px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+button{
+  width: 50%;
+  background-color: blue;
+  height: 40px;
+  margin-bottom: 20px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+}
