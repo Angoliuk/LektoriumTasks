@@ -10,20 +10,21 @@ export const Graph = () => {
 
         if (!vertices.has([i ,j])) {
           let allRoutes = []
-          if (j > 0 && matrixToUse[i][j-1] !== 1 && matrixToUse[i][j] !== 1) {
+          if (j > 0 && matrixToUse[i][j-1] !== '1' && matrixToUse[i][j] !== '1') {
             allRoutes.push([i, j-1])
           }
-          if (j+1 < matrixToUse[0].length && matrixToUse[i][j+1] !== 1 && matrixToUse[i][j] !== 1) {
+          if (j+1 < matrixToUse[0].length && matrixToUse[i][j+1] !== '1' && matrixToUse[i][j] !== '1') {
             allRoutes.push([i, j+1])
           }
-          if (i > 0 && matrixToUse[i-1][j] !== 1 && matrixToUse[i][j] !== 1) {
+          if (i > 0 && matrixToUse[i-1][j] !== '1' && matrixToUse[i][j] !== '1') {
             allRoutes.push([i-1, j])
           }
-          if (i + 1 < matrixToUse.length && matrixToUse[i+1][j] !== 1 && matrixToUse[i][j] !== 1) {
+          if (i + 1 < matrixToUse.length && matrixToUse[i+1][j] !== '1' && matrixToUse[i][j] !== '1') {
             allRoutes.push([i+1, j])
           }
 
           vertices.set([i, j], allRoutes);
+          console.log(vertices)
           
         }
       }
@@ -74,7 +75,7 @@ export const Graph = () => {
 
   }
 
-  const findShortestPath = (startPoint, finishPoint) => {
+  const findShortestPath = (matrix, startPoint, finishPoint) => {
 
     let result = creatingPathes(startPoint);
 
@@ -85,7 +86,11 @@ export const Graph = () => {
     let currentPoint = finishPoint;
     
     while(currentPoint !== startPoint) {
-      path.unshift(currentPoint);
+      console.log(currentPoint)
+      if (matrix[currentPoint[0]][currentPoint[1]] !== '1') {
+        path.unshift(currentPoint);
+        console.log(matrix[currentPoint[0]][currentPoint[1]])
+      }
       currentPoint = result.previousPoint[currentPoint];
     }
     
@@ -97,20 +102,35 @@ export const Graph = () => {
   const DrawingMatrixWithPath = () => {
 
     let matrix = []
+    matrix = [
+      ['0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '0', '0'],
+      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      ['0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '0', '0'],
+      ['0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '0', '0'],
+      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
+      ['0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '0', '0'],
+      ['0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0', '0'],
+      ['0', '0', '1', '0', '0', '0', '0', '0', '1', '0', '0', '0'],
+      ['0', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0'],
+      ['1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0'],
+    ]
     let heightWidth = [12, 12]
     let style = ''
 
-    for (let i = 0; i < heightWidth[0]; i++) {
-      let line = []
+    // for (let i = 0; i < heightWidth[0]; i++) {
+    //   let line = []
 
-      for (let j = 0; j < heightWidth[1]; j++) {
-        Math.floor(Math.random() * 10) > 7
-        ? line.push(`1`)
-        : line.push(`0`)
-      }
+    //   for (let j = 0; j < heightWidth[1]; j++) {
+    //     Math.floor(Math.random() * 10) > 7
+    //     ? line.push(`1`)
+    //     : line.push(`0`)
+    //   }
 
-      matrix.push(line)
-    }
+    //   matrix.push(line)
+    // }
+    // с рандомом 
 
     setRoutes(matrix)
 
@@ -120,10 +140,18 @@ export const Graph = () => {
       startEndPoints.push([Math.floor(Math.random() * heightWidth[0]), Math.floor(Math.random() * heightWidth[1])]);
     }
 
-    let path = findShortestPath(startEndPoints[0], startEndPoints[1])
+    // while (matrix[startEndPoints[0][0]][startEndPoints[0][1]] === '1' || matrix[startEndPoints[1][0]][startEndPoints[1][1]] === '1'){
+    //   console.log('try')
+    //   for (let i = 0; i < 2; i++) {
+    //     startEndPoints.push([Math.floor(Math.random() * heightWidth[0]), Math.floor(Math.random() * heightWidth[1])]);
+    //   }
+    // }
+    // генерация рандомных точек что не стоят на стенах
+
+    let path = findShortestPath(matrix, startEndPoints[0], startEndPoints[1])
 
     path.map((point) => {
-      return matrix[point[0]][point[1]] = 3 
+      return matrix[point[0]][point[1]] = '3' 
     })
 
     let count = -1
